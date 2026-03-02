@@ -1,0 +1,190 @@
+{
+  "users": {
+    "Ad": {
+      "password": "rfg",
+      "name": "Aditya",
+      "country": "India",
+      "exam": "JEE",
+      "grade": "Class 6",
+      "subjects": [
+        "Geography"
+      ],
+      "bio": "Debbie",
+      "status": "studying",
+      "status_time": "2026-03-02 12:00:49.309459",
+      "points": 20,
+      "streak": 3,
+      "joined": "2026-03-02 11:55:02.256457",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=Ad",
+      "connections": [
+        "Pd"
+      ],
+      "badges": []
+    },
+    "Padua ": {
+      "password": "padu",
+      "name": "Padua Don",
+      "country": "China",
+      "exam": "Gaokao",
+      "grade": "Class 12",
+      "subjects": [
+        "Mathematics",
+        "Chemistry",
+        "Physics",
+        "Computer Science"
+      ],
+      "bio": "Good boy",
+      "status": "chilling",
+      "status_time": "2026-03-02 12:23:00.096087",
+      "points": 0,
+      "streak": 0,
+      "joined": "2026-03-02 12:23:00.096099",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=Padua ",
+      "connections": [],
+      "badges": []
+    },
+    "Pd": {
+      "password": "rip",
+      "name": "Padua Don",
+      "country": "China",
+      "exam": "Gaokao",
+      "grade": "Class 12",
+      "subjects": [
+        "Mathematics",
+        "Chemistry",
+        "Physics",
+        "Computer Science"
+      ],
+      "bio": "Good boy",
+      "status": "studying",
+      "status_time": "2026-03-02 12:25:45.870030",
+      "points": 10,
+      "streak": 1,
+      "joined": "2026-03-02 12:24:19.569934",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=Pd",
+      "connections": [
+        "Ad"
+      ],
+      "badges": []
+    }
+  },
+  "posts": [
+    {
+      "id": 1,
+      "user": "Ad",
+      "user_name": "Aditya",
+      "user_exam": "JEE",
+      "user_country": "India",
+      "user_status": "chilling",
+      "content": "Won in science fair ",
+      "type": "achievement",
+      "time": "2026-03-02 12:00:23.249459",
+      "likes": [
+        "Ad"
+      ],
+      "comments": [
+        {
+          "user": "Ad",
+          "comment": "Lal",
+          "time": "2026-03-02 12:00:59.564940"
+        }
+      ]
+    }
+  ],
+  "helps": [
+    {
+      "id": 1,
+      "user": "Pd",
+      "user_name": "Padua Don",
+      "user_exam": "Gaokao",
+      "subject": "Mathematics",
+      "question": "Helpppp",
+      "exam": "Any",
+      "urgency": "high",
+      "time": "2026-03-02 12:26:13.090550",
+      "answers": [],
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "user": "Pd",
+      "user_name": "Padua Don",
+      "user_exam": "Gaokao",
+      "subject": "Mathematics",
+      "question": "Helpppp",
+      "exam": "Any",
+      "urgency": "high",
+      "time": "2026-03-02 12:26:14.764288",
+      "answers": [],
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "user": "Pd",
+      "user_name": "Padua Don",
+      "user_exam": "Gaokao",
+      "subject": "Mathematics",
+      "question": "Helpppp",
+      "exam": "Any",
+      "urgency": "high",
+      "time": "2026-03-02 12:26:15.329110",
+      "answers": [],
+      "status": "open"
+    },
+    {
+      "id": 4,
+      "user": "Pd",
+      "user_name": "Padua Don",
+      "user_exam": "Gaokao",
+      "subject": "Mathematics",
+      "question": "Helpppp",
+      "exam": "Any",
+      "urgency": "high",
+      "time": "2026-03-02 12:26:15.606935",
+      "answers": [],
+      "status": "open"
+    },
+    {
+      "id": 5,
+      "user": "Pd",
+      "user_name": "Padua Don",
+      "user_exam": "Gaokao",
+      "subject": "Mathematics",
+      "question": "Helpppp",
+      "exam": "Any",
+      "urgency": "high",
+      "time": "2026-03-02 12:26:15.913020",
+      "answers": [],
+      "status": "open"
+    },
+    {
+      "id": 6,
+      "user": "Pd",
+      "user_name": "Padua Don",
+      "user_exam": "Gaokao",
+      "subject": "Mathematics",
+      "question": "Helpppp",
+      "exam": "Any",
+      "urgency": "high",
+      "time": "2026-03-02 12:26:28.083933",
+      "answers": [],
+      "status": "open"
+    },
+    {
+      "id": 7,
+      "user": "Pd",
+      "user_name": "Padua Don",
+      "user_exam": "Gaokao",
+      "subject": "Mathematics",
+      "question": "Helpppp",
+      "exam": "Any",
+      "urgency": "high",
+      "time": "2026-03-02 12:26:35.931090",
+      "answers": [],
+      "status": "open"
+    }
+  ],
+  "mentors": [],
+  "connections": [],
+  "study_rooms": []
+}
