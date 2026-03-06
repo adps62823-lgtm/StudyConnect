@@ -15,21 +15,23 @@ class AuthHandler:
             max-width: 450px;
             margin: 0 auto;
             padding: 40px;
-            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            background: linear-gradient(180deg, var(--surface), #ffffff);
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.04);
         }
         .auth-title {
             text-align: center;
             font-size: 2.5em;
-            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            background: linear-gradient(90deg, var(--accent), #f7b731);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
+            color: var(--text);
         }
         .auth-subtitle {
             text-align: center;
-            color: #888;
+            color: var(--muted);
             margin-bottom: 30px;
         }
         </style>

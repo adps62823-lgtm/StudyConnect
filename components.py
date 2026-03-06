@@ -9,10 +9,13 @@ from icons import svg as icon_svg
 class UIComponents:
     @staticmethod
     def status_emoji(status: str) -> str:
-        # return a small colored dot as SVG for statuses
+        # return a small colored dot as SVG for statuses and include a
+        # CSS class matching the status so we can animate/style it externally.
         colors = {"studying": "#16a34a", "break": "#f59e0b", "sleeping": "#6b7280", "chilling": "#9ca3af"}
         c = colors.get(status, "#9ca3af")
-        return f"<svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"6\" cy=\"6\" r=\"5\" fill=\"{c}\" /></svg>"
+        svg = f"<svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"6\" cy=\"6\" r=\"5\" fill=\"{c}\" /></svg>"
+        # wrap in span for alignment and allow animation via class
+        return f"<span class=\"status-emoji {status}\">{svg}</span>"
     
     @staticmethod
     def status_color(status: str) -> str:

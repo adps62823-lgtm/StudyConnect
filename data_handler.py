@@ -12,17 +12,24 @@ class DataHandler:
     def load_data(self) -> Dict:
         """Load data from JSON file"""
         if not os.path.exists(DATA_FILE):
+            # initialize all expected top‑level collections, including chats
             return {
                 "users": {},
                 "posts": [],
                 "helps": [],
                 "mentors": [],
                 "connections": [],
-                "study_rooms": []
+                "study_rooms": [],
+                "chats": []
             }
         try:
             with open(DATA_FILE, "r") as f:
-                return json.load(f)
+                data = json.load(f)
+                # ensure backwards compatibility: older versions may not have
+                # chats key
+                if "chats" not in data:
+                    data["chats"] = []
+                return data
         except:
             return {
                 "users": {},
@@ -30,7 +37,8 @@ class DataHandler:
                 "helps": [],
                 "mentors": [],
                 "connections": [],
-                "study_rooms": []
+                "study_rooms": [],
+                "chats": []
             }
     
     def save_data(self):
@@ -122,7 +130,9 @@ class DataHandler:
             "type": post_type,
             "time": str(datetime.now()),
             "likes": [],
-            "comments": []
+            "dislikes": [],
+            "reactions": {},  # emoji -> list of users
+            "comments": []  # each comment: {"user":, "comment":, "time":, "replies": [], "reactions": {}}
         }
         self.data["posts"].append(post)
         self.save_data()
@@ -136,6 +146,40 @@ class DataHandler:
                     post["likes"].remove(username)
                 else:
                     post["likes"].append(username)
+                    # remove dislike if present
+                    if username in post.get("dislikes", []):
+                        post["dislikes"].remove(username)
+                self.save_data()
+                break
+    
+    def dislike_post(self, post_id: int, username: str):
+        """Dislike a post"""
+        for post in self.data["posts"]:
+            if post["id"] == post_id:
+                dislikes = post.setdefault("dislikes", [])
+                if username in dislikes:
+                    dislikes.remove(username)
+                else:
+                    dislikes.append(username)
+                    # remove like if present
+                    if username in post["likes"]:
+                        post["likes"].remove(username)
+                self.save_data()
+                break
+    
+    def react_to_post(self, post_id: int, username: str, emoji: str):
+        """Add/remove emoji reaction to post"""
+        for post in self.data["posts"]:
+            if post["id"] == post_id:
+                reactions = post.setdefault("reactions", {})
+                if emoji not in reactions:
+                    reactions[emoji] = []
+                if username in reactions[emoji]:
+                    reactions[emoji].remove(username)
+                    if not reactions[emoji]:
+                        del reactions[emoji]
+                else:
+                    reactions[emoji].append(username)
                 self.save_data()
                 break
     
@@ -146,9 +190,42 @@ class DataHandler:
                 post["comments"].append({
                     "user": username,
                     "comment": comment,
-                    "time": str(datetime.now())
+                    "time": str(datetime.now()),
+                    "replies": [],
+                    "reactions": {}
                 })
                 self.save_data()
+                break
+    
+    def reply_to_comment(self, post_id: int, comment_index: int, username: str, reply: str):
+        """Reply to a comment"""
+        for post in self.data["posts"]:
+            if post["id"] == post_id:
+                if comment_index < len(post["comments"]):
+                    post["comments"][comment_index]["replies"].append({
+                        "user": username,
+                        "reply": reply,
+                        "time": str(datetime.now()),
+                        "reactions": {}
+                    })
+                    self.save_data()
+                break
+    
+    def react_to_comment(self, post_id: int, comment_index: int, username: str, emoji: str):
+        """React to a comment"""
+        for post in self.data["posts"]:
+            if post["id"] == post_id:
+                if comment_index < len(post["comments"]):
+                    reactions = post["comments"][comment_index].setdefault("reactions", {})
+                    if emoji not in reactions:
+                        reactions[emoji] = []
+                    if username in reactions[emoji]:
+                        reactions[emoji].remove(username)
+                        if not reactions[emoji]:
+                            del reactions[emoji]
+                    else:
+                        reactions[emoji].append(username)
+                    self.save_data()
                 break
     
     def get_posts(self, filter_type: str = "all") -> List[Dict]:
@@ -190,7 +267,9 @@ class DataHandler:
                     "user_name": self.get_user(username).get("name", username),
                     "answer": answer,
                     "time": str(datetime.now()),
-                    "upvotes": []
+                    "upvotes": [],
+                    "downvotes": [],
+                    "comments": []  # comments on this answer
                 })
                 # Award points for helping
                 if username in self.data["users"]:
@@ -199,16 +278,51 @@ class DataHandler:
                 break
     
     def get_help_requests(self, subject: str = "all", exam: str = "all") -> List[Dict]:
-        """Get help requests with filters"""
+        """Get help requests with filters
+        The UI sends human-readable values like "All" so we normalize the
+        inputs for comparison. Both filters are case-insensitive and treat
+        the word "all" as meaning no filtering. This prevents the default
+        "All" option from accidentally excluding everything.
+        """
         helps = self.data["helps"][::-1]
         
-        if subject != "all":
+        # normalize so that "All" or "all" both get treated as no filter
+        if subject and subject.lower() != "all":
             helps = [h for h in helps if h.get("subject") == subject]
-        if exam != "all":
+        if exam and exam.lower() != "all":
             helps = [h for h in helps if h.get("exam") == exam]
         
         return helps
     
+    def upvote_answer(self, help_id: int, answer_index: int, username: str):
+        """Toggle upvote on an answer"""
+        for h in self.data.get("helps", []):
+            if h.get("id") == help_id:
+                ans = h.get("answers", [])[answer_index]
+                if username in ans.get("upvotes", []):
+                    ans["upvotes"].remove(username)
+                else:
+                    ans["upvotes"].append(username)
+                    # remove downvote if present
+                    if username in ans.get("downvotes", []):
+                        ans["downvotes"].remove(username)
+                self.save_data()
+                return
+
+    def downvote_answer(self, help_id: int, answer_index: int, username: str):
+        """Toggle downvote on an answer"""
+        for h in self.data.get("helps", []):
+            if h.get("id") == help_id:
+                ans = h.get("answers", [])[answer_index]
+                if username in ans.get("downvotes", []):
+                    ans["downvotes"].remove(username)
+                else:
+                    ans["downvotes"].append(username)
+                    if username in ans.get("upvotes", []):
+                        ans["upvotes"].remove(username)
+                self.save_data()
+                return
+
     # ==================== MENTOR OPERATIONS ====================
     def register_mentor(self, username: str, subject: str, experience: str, 
                        availability: str = "weekends") -> bool:
@@ -237,15 +351,67 @@ class DataHandler:
         return True
     
     def get_mentors(self, subject: str = "all", exam: str = "all") -> List[Dict]:
-        """Get mentors with filters"""
+        """Get mentors with filters
+        See get_help_requests for rationale: UI sends "All" and we want
+        to treat that as no filter. Comparison is case‑insensitive.
+        """
         mentors = self.data["mentors"][::-1]
         
-        if subject != "all":
+        if subject and subject.lower() != "all":
             mentors = [m for m in mentors if m.get("subject") == subject]
-        if exam != "all":
+        if exam and exam.lower() != "all":
             mentors = [m for m in mentors if m.get("exam") == exam]
         
         return mentors
+
+    # ==================== CHAT OPERATIONS ====================
+    def _find_chat(self, users: List[str]) -> Dict:
+        """Return an existing chat that contains exactly the given users.
+        The list order is ignored (chats between the same pair are unique).
+        """
+        user_set = set(users)
+        for c in self.data.get("chats", []):
+            if set(c.get("users", [])) == user_set:
+                return c
+        return {}
+
+    def create_chat(self, user1: str, user2: str) -> int:
+        """Create a chat between two users, or return existing chat id."""
+        if user1 == user2:
+            raise ValueError("cannot create chat with self")
+        existing = self._find_chat([user1, user2])
+        if existing:
+            return existing["id"]
+
+        # ensure the two users are marked as connected
+        self.add_connection(user1, user2)
+
+        chat = {
+            "id": len(self.data.get("chats", [])) + 1,
+            "users": [user1, user2],
+            "messages": []
+        }
+        self.data.setdefault("chats", []).append(chat)
+        self.save_data()
+        return chat["id"]
+
+    def get_chats_for_user(self, username: str) -> List[Dict]:
+        """Return a list of chat objects that include `username`."""
+        return [c for c in self.data.get("chats", []) if username in c.get("users", [])]
+
+    def send_message(self, chat_id: int, username: str, text: str):
+        """Add a message to a chat. Creates chat if necessary (should already exist)."""
+        for c in self.data.get("chats", []):
+            if c.get("id") == chat_id:
+                c.setdefault("messages", []).append({
+                    "user": username,
+                    "text": text,
+                    "time": str(datetime.now())
+                })
+                self.save_data()
+                return
+        # if we reach here the chat was missing; ignore or raise
+        raise KeyError(f"Chat with id {chat_id} not found")
     
     # ==================== STATISTICS ====================
     def get_stats(self) -> Dict:

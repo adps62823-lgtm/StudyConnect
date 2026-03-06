@@ -11,12 +11,24 @@
       ],
       "bio": "Debbie",
       "status": "studying",
-      "status_time": "2026-03-02 12:00:49.309459",
-      "points": 20,
-      "streak": 3,
+      "status_time": "2026-03-04 14:40:12.846720",
+      "points": 46,
+      "streak": 7,
       "joined": "2026-03-02 11:55:02.256457",
       "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=Ad",
       "connections": [
+        "Pd",
+        "Padua ",
+        "Padua ",
+        "Padua ",
+        "Padua ",
+        "Padua ",
+        "Pd",
+        "Pd",
+        "Pd",
+        "Pd",
+        "Padua ",
+        "Padua ",
         "Pd"
       ],
       "badges": []
@@ -40,7 +52,15 @@
       "streak": 0,
       "joined": "2026-03-02 12:23:00.096099",
       "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=Padua ",
-      "connections": [],
+      "connections": [
+        "Ad",
+        "Ad",
+        "Ad",
+        "Ad",
+        "Ad",
+        "Ad",
+        "Ad"
+      ],
       "badges": []
     },
     "Pd": {
@@ -56,13 +76,18 @@
         "Computer Science"
       ],
       "bio": "Good boy",
-      "status": "studying",
-      "status_time": "2026-03-02 12:25:45.870030",
-      "points": 10,
-      "streak": 1,
+      "status": "break",
+      "status_time": "2026-03-04 14:41:09.143656",
+      "points": 13,
+      "streak": 2,
       "joined": "2026-03-02 12:24:19.569934",
       "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=Pd",
       "connections": [
+        "Ad",
+        "Ad",
+        "Ad",
+        "Ad",
+        "Ad",
         "Ad"
       ],
       "badges": []
@@ -88,6 +113,86 @@
           "comment": "Lal",
           "time": "2026-03-02 12:00:59.564940"
         }
+      ]
+    },
+    {
+      "id": 2,
+      "user": "Ad",
+      "user_name": "Aditya",
+      "user_exam": "JEE",
+      "user_country": "India",
+      "user_status": "studying",
+      "content": "Com\u2019n you can do it",
+      "type": "motivation",
+      "time": "2026-03-03 14:18:16.395696",
+      "likes": [],
+      "comments": [
+        {
+          "user": "Ad",
+          "comment": "Yes\u2019s I can",
+          "time": "2026-03-03 14:18:39.885947"
+        },
+        {
+          "user": "Ad",
+          "comment": "Yes\u2019s I can",
+          "time": "2026-03-03 14:18:47.818564"
+        },
+        {
+          "user": "Ad",
+          "comment": "Yes\u2019s I can",
+          "time": "2026-03-03 14:18:50.157655"
+        },
+        {
+          "user": "Ad",
+          "comment": "Yessss",
+          "time": "2026-03-03 14:18:57.739855"
+        },
+        {
+          "user": "Ad",
+          "comment": "Yessss",
+          "time": "2026-03-03 14:19:05.053079"
+        },
+        {
+          "user": "Ad",
+          "comment": "Hello",
+          "time": "2026-03-04 08:14:11.829965"
+        },
+        {
+          "user": "Ad",
+          "comment": "Wow",
+          "time": "2026-03-04 08:39:32.031200"
+        },
+        {
+          "user": "Ad",
+          "comment": "Yeah",
+          "time": "2026-03-04 08:39:52.639158"
+        }
+      ],
+      "reactions": {
+        "\ud83d\ude02": [
+          "Ad"
+        ],
+        "\ud83d\ude0d": [
+          "Ad"
+        ],
+        "\ud83d\ude2e": [
+          "Ad"
+        ],
+        "\ud83d\ude22": [
+          "Ad"
+        ],
+        "\ud83d\udc4d": [
+          "Ad"
+        ],
+        "\ud83d\udc4f": [
+          "Ad"
+        ],
+        "\ud83d\ude21": [
+          "Ad"
+        ]
+      },
+      "dislikes": [
+        "Ad"
       ]
     }
   ],
@@ -182,9 +287,122 @@
       "time": "2026-03-02 12:26:35.931090",
       "answers": [],
       "status": "open"
+    },
+    {
+      "id": 8,
+      "user": "Ad",
+      "user_name": "Aditya",
+      "user_exam": "JEE",
+      "subject": "Computer Science",
+      "question": "Problem with following code:\nprlt(Hello, warld,]",
+      "exam": "Other",
+      "urgency": "high",
+      "time": "2026-03-03 14:21:27.176229",
+      "answers": [],
+      "status": "open"
+    },
+    {
+      "id": 9,
+      "user": "Ad",
+      "user_name": "Aditya",
+      "user_exam": "JEE",
+      "subject": "Computer Science",
+      "question": "Problem with following code:\nprlt(Hello, warld,]",
+      "exam": "Other",
+      "urgency": "high",
+      "time": "2026-03-03 14:21:30.714516",
+      "answers": [],
+      "status": "open"
+    },
+    {
+      "id": 10,
+      "user": "Ad",
+      "user_name": "Aditya",
+      "user_exam": "JEE",
+      "subject": "Computer Science",
+      "question": "Problem with following code:\nprlt(Hello, warld,]",
+      "exam": "Other",
+      "urgency": "high",
+      "time": "2026-03-03 14:21:31.779166",
+      "answers": [],
+      "status": "open"
+    },
+    {
+      "id": 11,
+      "user": "Ad",
+      "user_name": "Aditya",
+      "user_exam": "JEE",
+      "subject": "Computer Science",
+      "question": "Problem with following code:\nprlt(Hello, warld,]",
+      "exam": "Other",
+      "urgency": "high",
+      "time": "2026-03-03 14:21:32.809564",
+      "answers": [
+        {
+          "user": "Pd",
+          "user_name": "Padua Don",
+          "answer": "Fuck you",
+          "time": "2026-03-04 14:42:15.669603",
+          "upvotes": [
+            "Ad"
+          ]
+        },
+        {
+          "user": "Ad",
+          "user_name": "Aditya",
+          "answer": "Hello",
+          "time": "2026-03-06 04:57:27.210744",
+          "upvotes": [],
+          "downvotes": [
+            "Ad"
+          ]
+        }
+      ],
+      "status": "open"
+    },
+    {
+      "id": 12,
+      "user": "Ad",
+      "user_name": "Aditya",
+      "user_exam": "JEE",
+      "subject": "Mathematics",
+      "question": "I can\u2019t understand what\u2019s the main concept about, mid term splitting",
+      "exam": "Boards",
+      "urgency": "normal",
+      "time": "2026-03-06 05:25:37.991724",
+      "answers": [
+        {
+          "user": "Ad",
+          "user_name": "Aditya",
+          "answer": "It for factorisation.\n",
+          "time": "2026-03-06 05:26:10.555018",
+          "upvotes": [],
+          "downvotes": [],
+          "comments": []
+        }
+      ],
+      "status": "open"
     }
   ],
   "mentors": [],
   "connections": [],
-  "study_rooms": []
+  "study_rooms": [],
+  "chats": [
+    {
+      "id": 1,
+      "users": [
+        "Ad",
+        "Padua "
+      ],
+      "messages": []
+    },
+    {
+      "id": 2,
+      "users": [
+        "Pd",
+        "Ad"
+      ],
+      "messages": []
+    }
+  ]
 }
